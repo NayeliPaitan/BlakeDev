@@ -1,36 +1,49 @@
 <template>
   <nav :class="{ scrolled }">
-    <a href="#home" class="nav-logo">Blake<span>Dev</span></a>
+    <RouterLink to="/" class="nav-logo">Blake<span>Dev</span></RouterLink>
 
     <ul class="nav-links">
-      <li v-for="link in links" :key="link.href">
-        <a :href="link.href" :class="{ active: active === link.id }">
+      <li v-for="link in links" :key="link.id">
+        <RouterLink
+          :to="{ path: '/', hash: `#${link.id}` }"
+          :class="{ active: active === link.id }"
+        >
           {{ link.label }}
-        </a>
+        </RouterLink>
       </li>
     </ul>
 
-    <a href="https://whatsapp.com/channel/0029VajOHHoEgGfOOVcATs3l" class="nav-cta">Únete 🚀</a>
+    <a
+      href="https://whatsapp.com/channel/0029VajOHHoEgGfOOVcATs3l"
+      class="nav-cta"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Únete 🚀
+    </a>
   </nav>
 </template>
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
+import { RouterLink } from 'vue-router'
 import { useActiveSection } from '../composables/useActiveSection.js'
 
-const { active } = useActiveSection(['home','cursos','recursos','proyectos','comunidad'])
+const { active } = useActiveSection(['home', 'cursos', 'recursos', 'proyectos', 'comunidad'])
 
 const scrolled = ref(false)
-const onScroll = () => scrolled.value = window.scrollY > 40
+const onScroll = () => {
+  scrolled.value = window.scrollY > 40
+}
 
 onMounted(() => window.addEventListener('scroll', onScroll, { passive: true }))
 onUnmounted(() => window.removeEventListener('scroll', onScroll))
 
 const links = [
-  { href: '#cursos',    id: 'cursos',    label: 'Cursos'    },
-  { href: '#recursos',  id: 'recursos',  label: 'Recursos'  },
-  { href: '#proyectos', id: 'proyectos', label: 'Proyectos' },
-  { href: '#comunidad', id: 'comunidad', label: 'Comunidad' },
+  { id: 'cursos', label: 'CURSOS' },
+  { id: 'recursos', label: 'RECURSOS' },
+  { id: 'proyectos', label: 'PROYECTOS' },
+  { id: 'comunidad', label: 'COMUNIDAD' },
 ]
 </script>
 

@@ -17,8 +17,13 @@
     </p>
 
     <div class="hero-buttons">
-      <a href="cursos"   class="btn-primary">🎓 Ver Cursos</a>
-      <a href="recursos" class="btn-ghost">📦 Recursos Gratis</a>
+      <RouterLink :to="{ path: '/', hash: '#cursos' }" class="btn-primary">
+        🎓 Ver Cursos
+      </RouterLink>
+
+      <RouterLink :to="{ path: '/', hash: '#recursos' }" class="btn-ghost">
+        📦 Recursos Gratis
+      </RouterLink>
     </div>
 
     <div class="hero-stats">
@@ -115,6 +120,7 @@ import CursoCard    from '../components/CursoCard.vue'
 import RecursoCard  from '../components/RecursoCard.vue'
 import ProyectoCard from '../components/ProyectoCard.vue'
 import SocialCard   from '../components/SocialCard.vue'
+import { RouterLink } from 'vue-router'
 
 useReveal()
 
