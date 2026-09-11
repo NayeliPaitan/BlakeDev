@@ -1,4 +1,4 @@
-# 🟣 BlakeDev — Plataforma de Contenido Tech
+# 🟣 BlakeDev
 
 > Vue 3 + Vite · GitHub Pages ready
 
